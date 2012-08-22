@@ -3,18 +3,18 @@
 .sass-cache
 capybara-*.html
 .rspec
-/.bundle
-/vendor/bundle
-/log/*
-/tmp/*
-/db/*.sqlite3
-/public/system/*
-/coverage/
-/spec/tmp/*
+imganom/.bundle
+imganom/vendor/bundle
+imganom/log/*
+imganom/tmp/*
+imganom/db/*.sqlite3
+imganom/public/system/*
+imganom/coverage/
+imganom/spec/tmp/*
 **.orig
 rerun.txt
 pickle-email-*.html
-/build/
+imganom/build/
 ._*
 
 

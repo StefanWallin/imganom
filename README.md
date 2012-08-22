@@ -39,6 +39,11 @@ Regardless of the response, the server also returns stringified JSON with this s
 
 Web client for approving or disapproving the new images
 =======================================================
+GET /
+-------------
+Lists currently unapproved images for the current logged in user.
+
+
 GET /login/
 ----------
 The system has users, which may have multiple roles, for now these are the roles
@@ -54,9 +59,6 @@ GET /project/id/
 ----------------
 Lists current unapproved images within this project.
 
-GET /backlog/
--------------
-Lists currently unapproved images for the current user.
 
 GET /admin/users/
 -----------------

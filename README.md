@@ -9,8 +9,8 @@ imganom
 =======
 Utility to detect anomalies in two images that should be the same, useful for GUI testing.
 The utility is two parted:
-* a REST-based API for integration in your test suite.
-* a web client for approving or disapproving images.
+* a <a href="#http-rest-protocol">REST-based API</a> for integration in your test suite.
+* a <a href="#web-client-for-approving-or-disapproving-the-new-images">web client</a> for approving or disapproving images.
 
 HTTP REST Protocol
 ==================

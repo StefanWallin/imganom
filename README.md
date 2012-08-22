@@ -13,10 +13,18 @@ The utility is two parted:
 HTTP REST Protocol
 ==================
 
-PUT /image/imagename
+PUT /test/imagename
 --------------------
 Compares the uploaded image on that URL with a previous image uploaded on the same url. Uses <a href="http://pdiff.sourceforge.net/">pdiff / PerceptualDiff</a> for image comparison backend.
 Returns: 
 * <code>409 Conflict</code> - if the image is not identical with the old one(according to pdiff). 
 * <code>201 Created</code> - if the image does not exist, that is, this is the first image with this name.
-* <code>200 OK</code> - if the image is identical with the previously approved image.
+* <code>304 Not Modified</code> - if the image is identical with the previously approved image.
+
+Regardless of the response, the server also returns stringified JSON with this structure:
+<pre><code>
+	{
+		"status": numeric_response_code,
+		"url": web_gui_url
+	}
+</code></pre>

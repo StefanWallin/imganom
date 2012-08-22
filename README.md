@@ -74,23 +74,23 @@ Data types
 
 image - approved images
 -----
-<code>string</code> <code>path</code> - relative path from standard directory, <strong>part of primary key</strong>
-<code>enum</code> <code>state</code> - approved/pending, <strong>part of primary key</strong>
-<code>enum</code> <code>project</code> - which project is it related to
-<code>string</code> <code>md5</code> - to avoid sending it to pdiff to start with
+* <code>string</code> <code>path</code> - relative path from standard directory, <strong>part of primary key</strong>
+* <code>enum</code> <code>state</code> - approved/pending, <strong>part of primary key</strong>
+* <code>enum</code> <code>project</code> - which project is it related to
+* <code>string</code> <code>md5</code> - to avoid sending it to pdiff to start with
 
 imageHistory
 ------------
-<code>string</code> <code>path</code> - relative path from standard directory, <strong>part of primary key</strong>
-<code>enum</code> <code>state</code> - approved/pending, <strong>part of primary key</strong>
-<code>timestamp</code> <code>time</code> - when the action was performed, <strong>part of primary key</strong>
-<code>string</code> <code>action</code> - the action performed on that image, might be optimized into enum later.
+* <code>string</code> <code>path</code> - relative path from standard directory, <strong>part of primary key</strong>
+* <code>enum</code> <code>state</code> - approved/pending, <strong>part of primary key</strong>
+* <code>timestamp</code> <code>time</code> - when the action was performed, <strong>part of primary key</strong>
+* <code>string</code> <code>action</code> - the action performed on that image, might be optimized into enum later.
 
 user
 ----
-<code>string</code> <code>email</code> <code>unique</code> - user id, <strong>primary key</strong>
-<code>string</code> <code>name</code> - user selected pretty name.
-<code>int(1)</code> <code>notify</code> - 1/0 - send email notifications or not(1 = send, 0 = don't send.)
+* <code>string</code> <code>email</code> <code>unique</code> - user id, <strong>primary key</strong>
+* <code>string</code> <code>name</code> - user selected pretty name.
+* <code>int(1)</code> <code>notify</code> - 1/0 - send email notifications or not(1 = send, 0 = don't send.)
 
 project
 -------

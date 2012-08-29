@@ -1,7 +1,7 @@
 Current Status
 ==============
-* 2012-08-29: URL Routing with Sinatra is working. Small naive test suite is rolling. All logic is dummy functions. Installation of pdiff in dev env initiated. The API specification is updated with API-keys
-* 2012-08-22: This project is just started as of 2012-08-22. The only asset currently existing is this project outline. Leave a comment on it if you have any opinions!
+* <code>2012-08-29:</code> URL Routing with Sinatra is working. Small naive test suite is rolling. All logic is dummy functions. Installation of pdiff in dev env initiated. The API specification is updated with API-keys
+* <code>2012-08-22:</code> This project is just started as of 2012-08-22. The only asset currently existing is this project outline. Leave a comment on it if you have any opinions!
 
 The plans is for this software to be used in a Quality Assurance environment being fed screenshots
 
@@ -15,8 +15,8 @@ The utility is two parted:
 HTTP REST Protocol
 ==================
 
-PUT or POST /test/:projectid/:imagename/:api_key
---------------------
+PUT or POST /test/<code>:projectid</code>/<code>:imagename</code>/<code>:api_key</code>
+---------------------------------------------------------------------------------------
 Compares the uploaded image on that URL with a previous image uploaded on the same url. Uses <a href="http://pdiff.sourceforge.net/">pdiff / PerceptualDiff</a> for image comparison backend.
 
 <strong>Accepts:</strong>
@@ -57,8 +57,8 @@ GET /projects/
 --------------
 Lists the current projects. A user can be owner, developer or admin 
 
-GET /project/id/
-----------------
+GET /project/<code>:id</code>/
+-------------------------------
 Lists current unapproved images within this project.
 
 

@@ -72,10 +72,10 @@ Yeah.. if you are admin, you can administer projects and project bindings
 Data types
 ==========
 
-image - approved images
+image
 -----
 * <code>string</code> <code>path</code> - relative path from standard directory, <strong>part of primary key</strong>
-* <code>enum</code> <code>state</code> - approved/pending, <strong>part of primary key</strong>
+* <code>enum</code> <code>state</code> - <code>approved</code>/<code>pending</code>, <strong>part of primary key</strong> 
 * <code>enum</code> <code>project</code> - which project is it related to
 * <code>string</code> <code>md5</code> - to avoid sending it to pdiff to start with
 
@@ -94,11 +94,12 @@ user
 
 project
 -------
-
-role
-----
+* <code>int</code> <code>project</code> - a unique identifier per project, matches enums in image and imageHistory. <strong>primary key</strong>
+* <code>string</code> <code>name</code> - the name of the project.
 
 projectRole
 -----------
-
+* <code>string</code> <code>email</code> - user who owns the privilege
+* <code>enum</code> <code>project</code> - project which the privilege applies to
+* <code>enum</code> <code>privilege</code> - what kind of privilege that we approve
 

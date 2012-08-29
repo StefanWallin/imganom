@@ -1,7 +1,7 @@
 Current Status
 ==============
-
-This project is just started as of 2012-08-22. The only asset currently existing is this project outline. Leave a comment on it if you have any opinions!
+* 2012-08-29: URL Routing with Sinatra is working. Small naive test suite is rolling. All logic is dummy functions. Installation of pdiff in dev env initiated. The API specification is updated with API-keys
+* 2012-08-22: This project is just started as of 2012-08-22. The only asset currently existing is this project outline. Leave a comment on it if you have any opinions!
 
 The plans is for this software to be used in a Quality Assurance environment being fed screenshots
 
@@ -64,15 +64,31 @@ Lists current unapproved images within this project.
 
 GET /admin/users/
 -----------------
-Duhh.. if you are admin, you can administer users
+Duhh.. if you are admin with the correct role, you can administer users
 
 GET /admin/projects/
 -----------------
-Yeah.. if you are admin, you can administer projects and project bindings
+Yeah.. if you are admin with the correct role, you can administer projects and project bindings
+
+GET /admin/keys/
+-----------------
+Yeah.. if you are admin with the correct role, you can create or revoke API keys.
 
 
 Data types
 ==========
+
+apiKey
+------
+* <code>string</code> <code>key</code> - the API key, <code>part of primary key</code>
+* <code>enum</code> <code>status</code> - (<code>revoked</code>/<code>approved</code>)
+
+apiKeyActions
+-------------
+* <code>string</code> <code>actionEmail</code> - the email of the actioning user.
+* <code>timestamp</code> <code>when</code> - when the action was performed.
+* <code>enum</code> <code>action</code> - what action was performed (<code>revoked</code>/<code>approved</code>) on the API key.
+* <code>string</code> <code>comment</code> - why was this action performed?
 
 image
 -----
@@ -101,7 +117,8 @@ project
 
 projectRole
 -----------
-* <code>string</code> <code>email</code> - user who owns the privilege
-* <code>enum</code> <code>project</code> - project which the privilege applies to
-* <code>enum</code> <code>privilege</code> - what kind of privilege that we approve
+* <code>string</code> <code>email</code> - user who owns the privilege.
+* <code>enum</code> <code>project</code> - project which the privilege applies to.
+* <code>enum</code> <code>privilege</code> - what kind of privilege that we approve. <strong>will need to evolve</strong>
+
 

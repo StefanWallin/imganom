@@ -125,4 +125,8 @@ class Imganom < Sinatra::Application
    get '/admin/projects/', :auth => :admin do
       "Yeah.. if you are admin, you can administer projects and project bindings"
    end
+   
+   get '/admin/keys/', :auth => :admin do
+      "Yeah.. if you are admin with the correct role, you can create or revoke API keys."
+   end
 end

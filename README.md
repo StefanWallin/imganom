@@ -25,15 +25,16 @@ Compares the uploaded image on that URL with a previous image uploaded on the sa
 * <code>data</code><small><tt>(optional)</tt></small> - stringified JSON that represents what test was run, which commit, who commited and so on. Format is not important, it is recursed and echoed. close to the image. I'm not responsible for whatever you decide to put here.
 
 <strong>Returns:</strong>
+* <code>200 Not Modified</code> - if the image content is identical with the previously approved image.
 * <code>201 Created</code> - if the image does not exist, that is, this is the first image with this name.
-* <code>304 Not Modified</code> - if the image content is identical with the previously approved image.
-* <code>400 Bad Requeset</code> - no file or project was given, or given in bogus format. Fix your API integration.
+* <code>400 Bad Request</code> - no file or project was given, or given in bogus format. Fix your API integration.
 * <code>403 Forbidden</code> - Wrong API-key. Get a new one.
 * <code>409 Conflict</code> - if the image content is not identical with the old one(according to pdiff). 
 
 Regardless of the response, the server also returns stringified JSON with this structure:
 <pre><code>{
 	"status": numeric_response_code,
+	"description": description of error/ok,
 	"url": web_gui_url
 }</code></pre>
 

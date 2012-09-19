@@ -1,0 +1,7 @@
+%article 
+  %h1 Login!
+  %form{:method => "post", :action => "/auth/"}
+    %input{:name => "email" , :type => "email", :placeholder => "Please provide your email address...", :value => "a@a.com" }
+    %input{:name => "password" , :type => "password", :value => "test"}
+    %input{:name => "submit", :type => "submit", :value => "Log in"}
+  

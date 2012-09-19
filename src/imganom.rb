@@ -1,17 +1,31 @@
 #!/usr/bin/env ruby
+#gems
 require 'rubygems'
 require 'sinatra'
+require 'sinatra_warden'
+require 'haml'
+
+#warden libs
+#  require "warden"
+# require "warden_oauth"
+
+#own libs
+require 'lib/warden'
+require 'lib/user'
+
+#Dummy require's 
 require 'securerandom'
 
 
-
 class Imganom < Sinatra::Application
-
+   register Sinatra::Warden
+   
+   
    #Start dummy methods
    def is_valid_api_key(api_key)
       "klsdkl" == api_key.to_s
    end
-
+   
    def projectExists(project)
       123 == project.to_s.to_i
    end
@@ -23,6 +37,7 @@ class Imganom < Sinatra::Application
    def validImage(imagedata)
       #This method should check for valid image data
       nil == imagedata
+
    end
    def imgDiff(project, imagename, imagedata)
       SecureRandom.random_number(10)
@@ -62,71 +77,80 @@ class Imganom < Sinatra::Application
 
    # Here's the API web server
 
-   put '/test/:project/:imagename/:api_key' do 
-      testImage(params[:project], params[:imagename], params[:api_key], nil) #Replace nil with proper imagedata
+   put '/test/:project/:imagename/:api_key' do |project, imagename, api_key|
+      testImage(:project, :imagename, :api_key, nil) #Replace nil with proper imagedata
    end
-   post '/test/:project/:imagename/:api_key' do
-      testImage(params[:project], params[:imagename], params[:api_key], nil) #Replace nil with proper imagedata
+   post '/test/:project/:imagename/:api_key' do |project, imagename, api_key|
+      testImage(:project, :imagename, :api_key, nil) #Replace nil with proper imagedata
    end
    
    #deprecated
    #This method should not persist, for browser debugging only. in future api should only be accessible by curl or the like.
-   get '/test/:project/:imagename/:api_key' do
-      testImage(params[:project], params[:imagename], params[:api_key], nil) #Replace nil with proper imagedata
+   get '/test/:project/:imagename/:api_key' do |project, imagename, api_key|
+      testImage(:project, :imagename, :api_key, nil) #Replace nil with proper imagedata
    end
 
 
 
    # Here's the user facing web server
+   
+   post '/unauthenticated/?' do
+      status, headers, body = call env.merge("PATH_INFO" => '/login/')
+      [status, headers, body.map(&:upcase)]
+   end
 
-   enable :sessions
 
-   set(:auth) do |*roles|   # <- notice the splat here
-      condition do
-         unless logged_in? && roles.any? {|role| current_user.in_role? role }
-            redirect "/login/", 303
-         end
+   get '/login/' do
+      haml :login, :format => html5
+   end
+
+   post '/auth/' do
+     u = env['warden'].authenticate!
+     redirect "/"
+   end
+
+   get '/logout/' do
+     env['warden'].logout
+     redirect '/'
+   end
+
+
+   get '/' do
+      user = env['warden'].authenticate!
+      if user
+        "Lists currently unapproved images for the current logged in user. <a href='/logout/'>Log out</a>"
+      else
+        flash.now.alert = env['warden'].message
       end
    end
 
-   get "/my/account/", :auth => [:user, :admin] do
+   get "/myaccount/" do
+      u = env['warden'].authenticate!
       "Your Account Details"
    end
 
-   get "/only/admin/", :auth => :admin do
-      "Only admins are allowed here!"
-   end
-
-
-   get '/', :auth => [:user, :admin] do
-      "Lists currently unapproved images for the current logged in user."
-   end
-
-   get '/login/' do
-      "The system has users, which may have multiple roles, for now these are the roles
-      <ul><li>admin</li>
-      <li>product owner</li>
-      <li>developer</li>
-      </ul>"
-   end
-
-   get '/projects/', :auth => [:user, :admin] do
+   get '/projects/' do
+      u = env['warden'].authenticate!
       "Lists the current projects. A user can be owner, developer or admin "
    end
 
-   get '/project/id/', :auth => [:user, :admin] do
+   get '/project/id/' do
+      u = env['warden'].authenticate!
       "Lists current unapproved images within this project."
    end
 
-   get '/admin/users/', :auth => :admin do
+   get '/admin/users/' do
+      u = env['warden'].authenticate!
       "Duhh.. if you are admin, you can administer users"
    end
 
-   get '/admin/projects/', :auth => :admin do
+   get '/admin/projects/' do
+      u = env['warden'].authenticate!
       "Yeah.. if you are admin, you can administer projects and project bindings"
    end
    
-   get '/admin/keys/', :auth => :admin do
+   get '/admin/keys/' do
+      u = env['warden'].authenticate!
       "Yeah.. if you are admin with the correct role, you can create or revoke API keys."
    end
 end

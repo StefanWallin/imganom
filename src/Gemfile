@@ -1,0 +1,24 @@
+source 'https://rubygems.org'
+
+group :app do 
+   #deps
+   gem "unicorn"
+   gem "sinatra", :require => "sinatra/base"
+   gem "warden"
+   gem "sinatra_warden"
+   gem "redis", "~> 3.0.1"
+   gem "hiredis", "~> 0.4.5"
+   gem "em-synchrony"
+
+   #Dummy require's 
+   # gem 'securerandom'
+   
+   #my app
+   # require 'imganom'
+end
+
+# only :test do
+#    gem "rspec"
+#    gem "guard"
+#    gem "capybara"
+# end

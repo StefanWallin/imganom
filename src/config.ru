@@ -1,4 +1,12 @@
-require 'imganom'
+
+require 'rubygems'
+require 'bundler'
+
+Bundler.require(:app)
+require "./imganom.rb"
+#own libs
+require './lib/warden.rb'
+require './lib/user.rb'
 
 use Rack::ShowExceptions
 use Rack::CommonLogger

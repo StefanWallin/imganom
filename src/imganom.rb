@@ -1,25 +1,14 @@
 #!/usr/bin/env ruby
 #gems
-require 'rubygems'
-require 'sinatra'
-require 'sinatra_warden'
-require 'haml'
+# This makes sure the bundled gems are in our $LOAD_PATH
+# require File.expand_path(File.join(File.dirname(__FILE__), 'vendor'))
 
-#warden libs
-#  require "warden"
-# require "warden_oauth"
-
-#own libs
-require 'lib/warden'
-require 'lib/user'
-
-#Dummy require's 
-require 'securerandom'
-
+# This actually requires the bundled gems
+# Bundler.require_env(:app)
 
 class Imganom < Sinatra::Application
    register Sinatra::Warden
-   
+   $redis = Redis.new
    
    #Start dummy methods
    def is_valid_api_key(api_key)
@@ -40,7 +29,8 @@ class Imganom < Sinatra::Application
 
    end
    def imgDiff(project, imagename, imagedata)
-      SecureRandom.random_number(10)
+      # SecureRandom.random_number(10)
+      10
    end
    #End dummy methods
 
@@ -117,6 +107,7 @@ class Imganom < Sinatra::Application
 
    get '/' do
       user = env['warden'].authenticate!
+      $redis.set("mykey", "hello world")
       if user
         "Lists currently unapproved images for the current logged in user. <a href='/logout/'>Log out</a>"
       else

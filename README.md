@@ -5,6 +5,11 @@ Current Status
 * <code>2012-08-29:</code> URL Routing with Sinatra is working. Small naive test suite is rolling. All logic is dummy functions. Installation of pdiff in dev env initiated. The API specification is updated with API-keys
 * <code>2012-08-22:</code> This project is just started as of 2012-08-22. The only asset currently existing is this project outline. Leave a comment on it if you have any opinions!
 
+Iteration plans
+===============
+* <code>2012-10-03:</code> Get guard running rspecs and start testing the REST protocol TDD.
+* <code>2012-10-10:</code> TBD.
+
 The plans is for this software to be used in a Quality Assurance environment being fed screenshots
 
 imganom

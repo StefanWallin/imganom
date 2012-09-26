@@ -7,6 +7,7 @@ Current Status
 
 Iteration plans
 ===============
+Each iteration is about 4-6 hours every wednesday evening, unless something comes up.
 * <code>2012-10-03:</code> Get guard running rspecs and start testing the REST protocol TDD.
 * <code>2012-10-10:</code> TBD.
 

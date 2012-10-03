@@ -17,4 +17,4 @@ pickle-email-*.html
 imganom/build/
 ._*
 .DS_Store
-
+*.lock

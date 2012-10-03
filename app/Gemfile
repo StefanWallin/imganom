@@ -1,24 +1,26 @@
 source 'https://rubygems.org'
 
 group :app do 
-   #deps
+   #Server deps
    gem "unicorn"
    gem "sinatra", :require => "sinatra/base"
-   gem "warden"
-   gem "sinatra_warden"
+   
+   #Authentication
+   gem "warden" #auth manager
+   gem "sinatra_warden" #sinatra compat layer
+   
+   #Storage
    gem "redis", "~> 3.0.1"
    gem "hiredis", "~> 0.4.5"
-   gem "em-synchrony"
-
-   #Dummy require's 
-   # gem 'securerandom'
+   gem "em-synchrony" #dep for redis
    
-   #my app
-   # require 'imganom'
+   #Templateing
+   gem "haml"
 end
 
-# only :test do
-#    gem "rspec"
-#    gem "guard"
-#    gem "capybara"
-# end
+group :test do
+   #Testing gems
+   gem "rspec"
+   gem "guard"
+   gem "capybara"
+end

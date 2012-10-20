@@ -2,9 +2,6 @@ require 'bundler/setup'
 Bundler.require(:default, ENV['RACK_ENV'].to_s.to_sym)
 
 require "./imganom.rb"
-#own libs
-require './classes/warden.rb'
-require './classes/user.rb'
 
 use ::Rack::ShowExceptions
 # use Rack::CommonLogger

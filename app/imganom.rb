@@ -97,53 +97,53 @@ class Imganom < ::Sinatra::Application
    end
 
    post '/auth/' do
-     u = env['warden'].authenticate!
+     u = ENV['warden'].authenticate!
      redirect "/"
    end
 
    get '/logout/' do
-     env['warden'].logout
+     ENV['warden'].logout
      redirect '/'
    end
 
 
    get '/' do
-      user = env['warden'].authenticate!
+      user = ENV['warden'].authenticate!
       $redis.set("mykey", "hello world")
       if user
         "Lists currently unapproved images for the current logged in user. <a href='/logout/'>Log out</a> or die!"
       else
-        flash.now.alert = env['warden'].message
+        flash.now.alert = ENV['warden'].message
       end
    end
 
    get "/myaccount/" do
-      u = env['warden'].authenticate!
+      u = ENV['warden'].authenticate!
       "Your Account Details"
    end
 
    get '/projects/' do
-      u = env['warden'].authenticate!
+      u = ENV['warden'].authenticate!
       "Lists the current projects. A user can be owner, developer or admin "
    end
 
    get '/project/id/' do
-      u = env['warden'].authenticate!
+      u = ENV['warden'].authenticate!
       "Lists current unapproved images within this project."
    end
 
    get '/admin/users/' do
-      u = env['warden'].authenticate!
+      u = ENV['warden'].authenticate!
       "Duhh.. if you are admin, you can administer users"
    end
 
    get '/admin/projects/' do
-      u = env['warden'].authenticate!
+      u = ENV['warden'].authenticate!
       "Yeah.. if you are admin, you can administer projects and project bindings"
    end
    
    get '/admin/keys/' do
-      u = env['warden'].authenticate!
+      u = ENV['warden'].authenticate!
       "Yeah.. if you are admin with the correct role, you can create or revoke API keys."
    end
 end

@@ -9,7 +9,7 @@ set :raise_errors, true
 set :logging, false
 
 def app
-  Sinatra::Application
+  Imganom
 end
 
 RSpec.configure do |config|

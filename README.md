@@ -10,6 +10,7 @@ Each iteration is about 4-6 hours every wednesday evening, unless something come
 
 Current Status/Changelog
 ========================
+* <code>2012-10-20:</code> Worked a bit extra from home, color-i-fied the test outputs. Tests not properly running against my app though :\
 * <code>2012-10-17:</code> Sick :(, worked from home. guard now run's rspecs. Just need to write them!
 * <code>2012-10-10:</code> Mostly had issues with requireing dependencies through rake, left LH without solving it. Solved it later.
 * <code>2012-10-03:</code> Tried getting tests working. Changed to run both guard(autotesting) and the app itself through rake.

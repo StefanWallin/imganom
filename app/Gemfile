@@ -21,7 +21,6 @@ group :app, :development, :test do
 
    gem "rake"
    gem "rack"
-   gem "rack-test", require: "rack/test"
    
 end
 
@@ -36,6 +35,7 @@ group :test, :development do
    gem "guard-rspec"
    
    #Speccing tests
+   gem "rack-test", require: "rack/test"
    gem "rspec"
    gem "minitest" #might not be needed, but it keeps outputting 
                   # "gem install minitest" when I run rake

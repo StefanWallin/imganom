@@ -1,14 +1,12 @@
 #!/usr/bin/env ruby
-#gems
-# This makes sure the bundled gems are in our $LOAD_PATH
-# require File.expand_path(File.join(File.dirname(__FILE__), 'vendor'))
-
 # This actually requires the bundled gems
-# Bundler.require_env(:app)
 
-class Imganom < Sinatra::Application
-   register Sinatra::Warden
+require "sinatra"
+class Imganom < ::Sinatra::Application
+   register ::Sinatra::Warden
+   set :haml, :format => :html5
    $redis = Redis.new
+
    
    #Start dummy methods
    def is_valid_api_key(api_key)
@@ -65,7 +63,11 @@ class Imganom < Sinatra::Application
       end
    end
 
-   # Here's the API web server
+####                       ####
+##                           ##
+## Here's the API web server ##
+##                           ##
+####                       ####
 
    put '/test/:project/:imagename/:api_key' do |project, imagename, api_key|
       testImage(:project, :imagename, :api_key, nil) #Replace nil with proper imagedata
@@ -80,18 +82,18 @@ class Imganom < Sinatra::Application
       testImage(:project, :imagename, :api_key, nil) #Replace nil with proper imagedata
    end
 
-
-
-   # Here's the user facing web server
-   
+####                               ####
+##                                   ##
+## Here's the user facing web server ##
+##                                   ##
+####                               ####
    post '/unauthenticated/?' do
-      status, headers, body = call env.merge("PATH_INFO" => '/login/')
-      [status, headers, body.map(&:upcase)]
+      redirect "/login/", 303
    end
 
 
    get '/login/' do
-      haml :login, :format => html5
+      haml :login
    end
 
    post '/auth/' do
@@ -109,7 +111,7 @@ class Imganom < Sinatra::Application
       user = env['warden'].authenticate!
       $redis.set("mykey", "hello world")
       if user
-        "Lists currently unapproved images for the current logged in user. <a href='/logout/'>Log out</a>"
+        "Lists currently unapproved images for the current logged in user. <a href='/logout/'>Log out</a> or die!"
       else
         flash.now.alert = env['warden'].message
       end

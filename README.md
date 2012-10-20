@@ -1,17 +1,23 @@
-Current Status
-==============
+Iteration plans
+===============
+This is a sideproject which **IS NOT YET DONE AND READY FOR REPLOYMENT**
+Each iteration is about 4-6 hours every wednesday evening, unless something comes up.
+* <code>next up:</code> write API rspecs
+* <code>after that:</code> Integrate with pdiff.
+
+*The plans is for this software to be used in a Quality Assurance testing environment being fed screenshots from a continuous integration build server*
+
+
+Current Status/Changelog
+========================
+* <code>2012-10-17:</code> Sick :(, worked from home. guard now run's rspecs. Just need to write them!
+* <code>2012-10-10:</code> Mostly had issues with requireing dependencies through rake, left LH without solving it. Solved it later.
+* <code>2012-10-03:</code> Tried getting tests working. Changed to run both guard(autotesting) and the app itself through rake.
 * <code>2012-09-26:</code> Gemfile set up using Bundler. Moved to 1.9.3 via rvm. Got redis spinning and interacting with my code.
 * <code>2012-09-19:</code> Sinatra up and running with basic Warden authentication. Next up is going to be redis storage for users and roles.
 * <code>2012-08-29:</code> URL Routing with Sinatra is working. Small naive test suite is rolling. All logic is dummy functions. Installation of pdiff in dev env initiated. The API specification is updated with API-keys
 * <code>2012-08-22:</code> This project is just started as of 2012-08-22. The only asset currently existing is this project outline. Leave a comment on it if you have any opinions!
 
-Iteration plans
-===============
-Each iteration is about 4-6 hours every wednesday evening, unless something comes up.
-* <code>2012-10-03:</code> Get guard running rspecs and start testing the REST protocol TDD.
-* <code>2012-10-10:</code> TBD.
-
-The plans is for this software to be used in a Quality Assurance environment being fed screenshots
 
 imganom
 =======

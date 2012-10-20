@@ -1,0 +1,22 @@
+ENV['RACK_ENV'] || ENV['RACK_ENV']='test'
+require "rspec/core/rake_task"
+$:.unshift(File.dirname(__FILE__))
+
+task :default => [:run]
+
+desc "run app locally"
+task :run => "Gemfile.lock" do
+  sh "unicorn -p 4567"
+end
+
+# need to touch Gemfile.lock as bundle doesn't touch the file if there is no change
+file "Gemfile.lock" => "Gemfile" do
+  sh "bundle && touch Gemfile.lock"
+end
+
+desc "run specs"
+RSpec::Core::RakeTask.new do |t|
+# RSpec::Core::RakeTask.new "specs"
+  t.pattern = "./spec/**/*_spec.rb" # don't need this, it's default.
+  # Put spec opts in a file named .rspec in root
+end

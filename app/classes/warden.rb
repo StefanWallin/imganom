@@ -1,4 +1,4 @@
-require './lib/user.rb'
+require './classes/user.rb'
 
 Warden::Manager.serialize_into_session do |user| 
   user.email

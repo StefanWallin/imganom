@@ -1,26 +1,44 @@
 source 'https://rubygems.org'
+source 'http://gems.github.com'
 
-group :app do 
+group :app, :development, :test do 
    #Server deps
    gem "unicorn"
-   gem "sinatra", :require => "sinatra/base"
-   
+   gem "sinatra" , :require => "sinatra/base"
+
    #Authentication
    gem "warden" #auth manager
    gem "sinatra_warden" #sinatra compat layer
-   
+
    #Storage
    gem "redis", "~> 3.0.1"
    gem "hiredis", "~> 0.4.5"
    gem "em-synchrony" #dep for redis
-   
+
    #Templateing
    gem "haml"
+   gem "erubis"
+
+   gem "rake"
+   gem "rack"
+   gem "rack-test", require: "rack/test"
+   
 end
 
-group :test do
-   #Testing gems
-   gem "rspec"
+group :test, :development do
+   #Testing acceccories
+   gem "ruby_gntp" #Growl Notifications, tested w. Growl > 2.0 on OSX 10.7
+   gem "turn" #pretty printing of tests
+   gem "warden"
+   #Guard
+   gem "rb-fsevent"
    gem "guard"
-   gem "capybara"
+   gem "guard-rspec"
+   
+   #Speccing tests
+   gem "rspec"
+   gem "minitest" #might not be needed, but it keeps outputting 
+                  # "gem install minitest" when I run rake
+   # gem "capybara"  #might not be needed
+   # gem "rack-test" #might not be needed
 end

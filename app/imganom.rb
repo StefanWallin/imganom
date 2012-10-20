@@ -1,7 +1,11 @@
 #!/usr/bin/env ruby
 # This actually requires the bundled gems
 
-require "sinatra"
+#own libs
+require_relative 'classes/warden.rb'
+require_relative 'classes/user.rb'
+
+
 class Imganom < ::Sinatra::Application
    register ::Sinatra::Warden
    set :haml, :format => :html5

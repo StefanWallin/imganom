@@ -1,6 +1,10 @@
+Current Status
+===============
+This is a sideproject which **IS NOT YET DONE AND READY FOR REPLOYMENT**. It's purpose
+is to teach myself some ruby, rails and working with rack and sinatra.
+
 Iteration plans
 ===============
-This is a sideproject which **IS NOT YET DONE AND READY FOR REPLOYMENT**
 Each iteration is about 4-6 hours every wednesday evening, unless something comes up.
 * <code>next up:</code> write API rspecs
 * <code>after that:</code> Integrate with pdiff.
@@ -8,8 +12,8 @@ Each iteration is about 4-6 hours every wednesday evening, unless something come
 *The plans is for this software to be used in a Quality Assurance testing environment being fed screenshots from a continuous integration build server*
 
 
-Current Status/Changelog
-========================
+Changelog
+=========
 * <code>2012-10-20:</code> Worked a bit extra from home, color-i-fied the test outputs. Tests not properly running against my app though :\
 * <code>2012-10-17:</code> Sick :(, worked from home. guard now run's rspecs. Just need to write them!
 * <code>2012-10-10:</code> Mostly had issues with requireing dependencies through rake, left LH without solving it. Solved it later.

@@ -1,12 +1,13 @@
 !!!
 %html
-   %head
-      %meta{:charset => "utf-8"}
-      %title "Login or die"
-   %body
-      %article 
-         %h1 Login!
-         %form{:method => "post", :action => "/auth/"}
-            %input{:name => "email" , :type => "email", :placeholder => "Please provide your email address...", :value => "a@a.com" }
-            %input{:name => "password" , :type => "password", :value => "test"}
-            %input{:name => "submit", :type => "submit", :value => "Log in"}
+  %head
+    %meta{:charset => "utf-8"}
+    %title "Login or die"
+  %body
+    %article 
+      %h1 Login!
+      %form{:method => "post", :action => "/login/?"}
+        %input{:name => "email" , :type => "email", :placeholder => "Please provide your email address...", :value => "a@a.com" }
+        %input{:name => "password" , :type => "password", :value => "test"}
+        %input{:name => "submit", :type => "submit", :value => "Log in"}
+      %a{:href => "/projects/"} projects

@@ -23,7 +23,7 @@ end
     u = User.new(params["email"])
     if u.authenticate(params["password"]).nil?
       print "fail\n"
-      fail("Could not log in")
+      fail!("Could not log in")
     else
       print "success\n"
       success!(u)

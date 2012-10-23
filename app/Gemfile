@@ -8,7 +8,6 @@ group :app, :development, :test do
 
    #Authentication
    gem "warden" #auth manager
-   gem "sinatra_warden" #sinatra compat layer
 
    #Storage
    gem "redis", "~> 3.0.1"
@@ -19,7 +18,7 @@ group :app, :development, :test do
    gem "haml"
    gem "erubis"
 
-   gem "rake"
+   #Base web server application
    gem "rack"
    
 end
@@ -28,7 +27,10 @@ group :test, :development do
    #Testing acceccories
    gem "ruby_gntp" #Growl Notifications, tested w. Growl > 2.0 on OSX 10.7
    gem "turn" #pretty printing of tests
-   gem "warden"
+   
+   #CLI helper
+   gem "rake"
+      
    #Guard
    gem "rb-fsevent"
    gem "guard"

@@ -12,25 +12,28 @@ require_relative 'user.rb'
 
 module Imganom
   class API < Sinatra::Application
-    register Sinatra::Warden
     set :haml, :format => :html5
     $redis = Redis.new
 
-    put '/test/:project/:imagename/:api_key' do |project, imagename, api_key|
+    def testImage (project, imagename, api_key, imagedata)
+      [200, { "Content-Type" => "text/plain" }, request.env]
+    end
+
+    put '/:project/:imagename/:api_key' do |project, imagename, api_key|
       testImage(:project, :imagename, :api_key, nil) #Replace nil with proper imagedata
     end
-    
-    post '/test/:project/:imagename/:api_key' do |project, imagename, api_key|
+
+    post '/:project/:imagename/:api_key' do |project, imagename, api_key|
       testImage(:project, :imagename, :api_key, nil) #Replace nil with proper imagedata
     end
 
     # deprecated
-    # This method should not persist, for browser debugging only. in future api 
+    # This method should not persist, for browser debugging only. in future api
     # should only be accessible by curl or the like.
-    get '/test/:project/:imagename/:api_key' do |project, imagename, api_key|
+    get '/:project/:imagename/:api_key' do |project, imagename, api_key|
       testImage(:project, :imagename, :api_key, nil) #Replace nil with proper imagedata
     end
-    
+
     def self.new(*)
       super
     end

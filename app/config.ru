@@ -1,8 +1,7 @@
 require File.dirname(__FILE__) + '/config/boot.rb'
 
 use ::Rack::ShowExceptions
-# use Rack::CommonLogger
-# use Rack::Reloader, 0
+use Rack::CommonLogger
 use ::Rack::Session::Cookie, :secret => "kjldfskldfs kldfs kljdsf n89yq3ny98ater "
 
 use ::Warden::Manager do |manager|
@@ -11,9 +10,6 @@ use ::Warden::Manager do |manager|
 end
 
 run Rack::URLMap.new({
-  "/"    => Imganom::Webapp,
-  "/api" => Imganom::API
+  "/"     => Imganom::Webapp,
+  "/test" => Imganom::API
 })
-
-
-

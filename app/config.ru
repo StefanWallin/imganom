@@ -1,7 +1,4 @@
-require 'bundler/setup'
-Bundler.require(:default, ENV['RACK_ENV'].to_s.to_sym)
-
-require "./imganom.rb"
+require File.dirname(__FILE__) + '/config/boot.rb'
 
 use ::Rack::ShowExceptions
 # use Rack::CommonLogger
@@ -9,8 +6,14 @@ use ::Rack::ShowExceptions
 use ::Rack::Session::Cookie, :secret => "kjldfskldfs kldfs kljdsf n89yq3ny98ater "
 
 use ::Warden::Manager do |manager|
-	manager.default_strategies :password
-	manager.failure_app = Imganom
+  manager.default_strategies :password
+  manager.failure_app = Imganom::Webapp
 end
 
-run Imganom
+run Rack::URLMap.new({
+  "/"    => Imganom::Webapp,
+  "/api" => Imganom::API
+})
+
+
+
